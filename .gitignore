@@ -1,0 +1,7 @@
+commandline/*.o
+commandline/remotecontrol
+firmware/main.elf
+firmware/main.hex
+firmware/main.o
+
+
