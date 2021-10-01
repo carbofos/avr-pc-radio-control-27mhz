@@ -12,7 +12,7 @@
 
 ![RC](https://img.radiokot.ru/files/114397/medium/xcoqjku73.gif)
 
-## Desription
+## Description
 
 I was inspired by next russian post regarding reverse engineering protocol of 27mhz RC toys:
 
@@ -27,10 +27,39 @@ Do not forget to connect VCC+5V and GND to your transmitter board.
 
 ![RC](./img/1633095362676.jpg)
 
+## Protocol
+I did use Saleae Logic analyser to visualise protocol pulses from TX-2 chip.
+
+![RC](./img/1633098951679.jpg)
+
+E.g. on the foto you can see how code 10 (forward) is transmitted:
+4 long pulses (header): each ~1.3ms high and ~0.5ms low signal with 75% duty cycle: ~1.8ms total.
+10 short pulses: each 0.5ms low and 0.5ms low.
+
+List of pulse sequences:
+
+Forward: 10 pulses
+Reverse: 40 pulses
+Right: 64 pulses
+Left: 58 pulses
+Forward/Left: 28 pulses
+Forward/Right: 34 pulses
+Reverse/Left: 52 pulses
+Reverse/Right: 46 pulses
+
+Some other sources have another list of RC codes which is different from my devices:
+
+Forward: 16 pulses
+Reverse: 40 pulses
+Forward/Left: 28 pulses
+Forward/Right: 34 pulses
+Reverse/Left: 52 pulses
+Reverse/Right: 46 pulses
+
 
 ## Setup
 
-You must make next changes in the next files:
+You must make next changes in the next files if it differs from your setings:
 
 firmware/main.c - output port and output bit on the port:
 #define RC_PORT_OUTPUT     PORTB
